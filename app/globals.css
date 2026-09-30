@@ -1,26 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ================================
+     TYPOGRAPHY
+     ================================ */
+
+  --font-display: "Playfair Display", serif;
+  --font-sans: "DM Sans", sans-serif;
+
+  /* ================================
+     BRAND COLORS
+     ================================ */
+
+  --color-tibeb-green: #173d2f;
+  --color-tibeb-green-dark: #0e2a20;
+  --color-tibeb-green-light: #2e5b47;
+
+  --color-tibeb-gold: #c99a3e;
+  --color-tibeb-gold-light: #e5c477;
+  --color-tibeb-gold-dark: #9d7428;
+
+  --color-tibeb-cream: #f8f5ed;
+  --color-tibeb-ivory: #fffdf8;
+
+  --color-tibeb-beige: #ede5d6;
+  --color-tibeb-sand: #d8c8ae;
+
+  --color-tibeb-brown: #5a4635;
+  --color-tibeb-brown-light: #806b56;
+
+  --color-tibeb-terracotta: #a85c3b;
+  --color-tibeb-red: #8e342d;
+
+  /* ================================
+     TEXT
+     ================================ */
+
+  --color-text-primary: #1d2923;
+  --color-text-secondary: #66716b;
+  --color-text-muted: #929a95;
+
+  /* ================================
+     BORDERS
+     ================================ */
+
+  --color-border: #e5e0d6;
+  --color-border-dark: #cfc7b9;
+
+  /* ================================
+     BACKGROUNDS
+     ================================ */
+
+  --color-background: #fffdf8;
+  --color-background-secondary: #f8f5ed;
+  --color-background-dark: #173d2f;
+
+  /* ================================
+     STATUS
+     ================================ */
+
+  --color-success: #3e7654;
+  --color-warning: #c28b32;
+  --color-error: #b4473d;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-text-primary);
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--color-tibeb-gold);
+    color: white;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.hero-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(14, 42, 32, 0.85) 0%,
+    rgba(14, 42, 32, 0.55) 45%,
+    rgba(14, 42, 32, 0.1) 100%
+  );
 }
