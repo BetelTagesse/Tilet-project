@@ -1,30 +1,36 @@
-"use client";
+import { auth, signOut } from "@/auth";
+import AuthModal from "@/components/auth/AuthModal";
 
-import { useState } from "react";
-import AuthForm from "@/components/auth/AuthForm";
-
-export default function HomePage() {
-  const [showAuth, setShowAuth] = useState(false);
+// Server Component: reads the session on the server, so only AuthModal
+// (the interactive part) sends JavaScript to the browser.
+export default async function HomePage() {
+  const session = await auth();
 
   return (
-    <main>
-      {/* Your existing Tilet homepage */}
-      <h1 className="card font-bold underline">Hello world!</h1>;
-      <button
-        onClick={() => setShowAuth(true)}
-        className="rounded-lg bg-tibeb-green px-5 py-3 text-white"
-      >
-        Sign In
-      </button>
-      {showAuth && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center
-                     bg-black/50 p-4 backdrop-blur-sm"
-        >
-          <div className="relative w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
-            <AuthForm mode="signin" onClose={() => setShowAuth(false)} />
-          </div>
+    <main className="min-h-screen bg-tibeb-cream p-6">
+      <h1 className="text-4xl font-bold text-tibeb-green">Welcome to Tilet</h1>
+
+      {session?.user ? (
+        <div className="mt-6 flex items-center gap-4">
+          <p className="text-text-secondary">
+            Signed in as {session.user.name ?? session.user.email}
+          </p>
+          <form
+            action={async () => {
+              "use server";
+              await signOut({ redirectTo: "/" });
+            }}
+          >
+            <button
+              type="submit"
+              className="rounded-lg border border-tibeb-green px-5 py-3 text-tibeb-green"
+            >
+              Sign out
+            </button>
+          </form>
         </div>
+      ) : (
+        <AuthModal />
       )}
     </main>
   );

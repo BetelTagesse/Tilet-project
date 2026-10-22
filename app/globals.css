@@ -1,14 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");
-
 @import "tailwindcss";
+
+/* Fonts come from next/font in app/layout.tsx */
+@theme inline {
+  --font-sans: var(--font-dm-sans), sans-serif;
+  --font-display: var(--font-playfair), serif;
+}
 
 @theme {
   /* ================================
      TYPOGRAPHY
      ================================ */
-
-  --font-display: "Playfair Display", serif;
-  --font-sans: "DM Sans", sans-serif;
 
   /* ================================
      BRAND COLORS
@@ -75,7 +76,7 @@
     margin: 0;
     background: var(--color-background);
     color: var(--color-text-primary);
-    font-family: var(--font-sans);
+    font-family: var(--font-dm-sans), sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -83,7 +84,7 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-display);
+    font-family: var(--font-playfair), serif;
     color: var(--color-text-primary);
   }
 
