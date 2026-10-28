@@ -51,3 +51,18 @@ model VerificationToken {
   expires    DateTime
   @@unique([identifier, token])
 }
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       Int      // in santim: 420000 = ETB 4,200.00
+  category    String   // "women" | "men" | "kids"
+  sizes       String[]
+  colors      String[]
+  imageUrl    String?
+  inStock     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  @@index([category])
+}
